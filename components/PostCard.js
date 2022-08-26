@@ -22,7 +22,7 @@ const styles = {
 
 function PostCard() {
   return (
-    <Link href='post'>
+    <Link href='post/slug'>
     <div className={styles.wrapper}>
       <div className={styles.postDetails}>
         <div className={styles.authorContainer}>
