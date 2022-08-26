@@ -1,8 +1,10 @@
+import ArticleMain from "../../components/ArticleMain";
 import ReadersNav from "../../components/ReadersNav";
 import Recommendations from "../../components/Recommendations";
 
 const styles = {
   wrapper: "flex",
+  articleMain:'flex-[3]',
 };
 
 function Post() {
@@ -11,7 +13,9 @@ function Post() {
       <div>
         <ReadersNav />
       </div>
-      <div>MAin</div>
+      <div className={styles.articleMain}>
+        <ArticleMain/>
+      </div>
       <div>
         <Recommendations />
       </div>

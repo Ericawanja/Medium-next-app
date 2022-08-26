@@ -8,7 +8,7 @@ import author from "../static/author.jpg";
 import JSLogo from "../static/jsLogo.png";
 
 const styles = {
-  wrapper: "h-screen min-w-[10rem] max-w-[30rem] flex-[1.2] p-2rem",
+  wrapper: "h-screen min-w-[10rem] max-w-[30rem] flex-[1.2] p-[2rem]",
   accentedBtn:
     "flex items-center justify-center text-sm bg-black text-white my-[2rem] py-[.6rem] rounded-full",
   searchBar:
