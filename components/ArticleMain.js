@@ -22,17 +22,16 @@ const styles = {
   listenButton: "flex items-center gap-[.2rem] text-[#1A8917]",
   socials: " flex gap-[1rem] text-[#787878] cursor-pointer",
   space: "w-[1.5rem]",
-  bannerContainer:'h-[18rem] w-full grid center overflow-hidden mb-[2rem]',
-  image:'object-cover',
-  articleMainContainer:'flex flex-col gap-[1rem]',
-  title:'font-bold text-3xl',
-  subtitle:'font-mediumSerifItalic text-[1.4rem] text-[#292929]',
-  articleText:'font-mediumSerif text-[1.4rem] text-[#292929]',
-  
+  bannerContainer: "h-[18rem] w-full grid center overflow-hidden mb-[2rem]",
+  image: "object-cover",
+  articleMainContainer: "flex flex-col gap-[1rem]",
+  title: "font-bold text-3xl",
+  subtitle: "font-mediumSerifItalic text-[1.4rem] text-[#292929]",
+  articleText: "font-mediumSerif text-[1.4rem] text-[#292929]",
 };
 
-function ArticleMain({post, author}) {
-  console.log(post, author)
+function ArticleMain({ post, author }) {
+  console.log(post);
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
@@ -41,15 +40,22 @@ function ArticleMain({post, author}) {
             <div className={styles.authorProfileImageContainer}>
               <Image
                 className={styles.image}
-                src={author}
+                src={`https://res.cloudinary.com/demo/image/fetch/${author?.data?.imageUrl}`}
                 width={100}
                 height={100}
               />
             </div>
             <div className={styles.column}>
-              <div>Erica Wanja</div>
+              <div>{author?.data?.name} </div>
               <div className={styles.postDetails}>
-                <span>June 15 . 7 min read </span>
+                <span>
+                  {post?.data?.postedOn.toDate().toLocaleString("en-US", {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric",
+                  })}
+                  .{post?.data?.postLength}{" "}
+                </span>
                 <span className={styles.listenButton}>
                   <AiFillPlayCircle />
                   Listen
@@ -78,32 +84,20 @@ function ArticleMain({post, author}) {
               width={100}
             />
           </div>
-          <h1 className={styles.title}>7 free tools that will make you prosperous</h1>
+          <h1 className={styles.title}>{post?.data?.title}</h1>
           <span className={styles.subtitle}>
-            <div>Erica wanja, June 15, 2022</div>
-            <div>Brief: Productivity</div>
+            <div>
+              {author?.data?.name},{" "}
+              {post?.data?.postedOn.toDate().toLocaleString("en-US", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+              })}
+            </div>
+            <div>{post?.data?.brief}</div>
           </span>
           <div className={styles.articleText}>
-            Et proident ipsum est elit aliqua anim eiusmod ex. Tempor aliquip
-            aliqua anim reprehenderit do veniam eu voluptate laboris adipisicing
-            pariatur incididunt. Laboris sit consectetur sunt ipsum id elit
-            magna. Quis exercitation amet fugiat mollit proident duis quis qui
-            consequat adipisicing esse magna. Voluptate dolor aute aliquip qui
-            cupidatat proident qui nulla. Officia consequat nostrud et esse
-            eiusmod sint proident laboris. 
-            
-            Nostrud amet enim eu ullamco sunt.
-            Excepteur do fugiat nulla laboris non aliqua mollit esse do
-            excepteur aute aliquip reprehenderit. Anim excepteur deserunt culpa
-            irure fugiat duis dolore deserunt ad. Quis pariatur ea ut occaecat
-            aliquip tempor id tempor officia magna in irure voluptate do.
-            Occaecat culpa dolore excepteur aliquip fugiat commodo qui id tempor
-            et esse. Reprehenderit esse esse dolor voluptate dolore magna. Qui
-            pariatur quis ex fugiat minim nostrud nisi culpa eiusmod do sunt ea
-            enim tempor. Deserunt magna esse magna minim labore non nostrud
-            incididunt reprehenderit aliqua. Voluptate nisi officia magna et
-            nulla. Deserunt adipisicing adipisicing ullamco duis et id consequat
-            veniam.
+          {post?.data?.body}
           </div>
         </div>
       </div>
