@@ -4,7 +4,7 @@ import author from "../static/author.jpg";
 import { FiBookmark } from "react-icons/fi";
 import { db } from "../firebase";
 import { doc, getDoc, collection, query, where } from "firebase/firestore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const styles = {
   wrapper:
@@ -25,11 +25,13 @@ const styles = {
 };
 
 function PostCard({ postInfo }) {
+  const [authorData, setAuthorData]= useState(null)
+
   useEffect(()=>{
     const getAuthorData= async ()=> {
-      const querySnapshot = await getDoc(collection(db, 'users'))
-      const authorQuery = await query(querySnapshot, where('name', '==', 'John Doe'))
-      console.log(authorQuery)
+      let retrievedAuthorData = await (await getDoc(doc(db, 'users', postInfo.data?.author))).data()
+      console.log(retrievedAuthorData.name)    
+      setAuthorData(retrievedAuthorData) 
     }
     getAuthorData()
   }, [])
@@ -40,13 +42,15 @@ function PostCard({ postInfo }) {
           <div className={styles.authorContainer}>
             <div className={styles.authorImageContainer}>
               <Image
-                src={author}
+                src={
+                  `https://res.cloudinary.com/demo/image/fetch/${authorData?.imageUrl}`
+                }
                 className={styles.authorImage}
                 height={40}
                 width={40}
               />
             </div>
-            <div className={styles.authorName}>{postInfo.data?.author}</div>
+            <div className={styles.authorName}>{authorData?.name}</div>
           </div>
           <h1 className={styles.title}>{postInfo.data?.title}</h1>
           <div className={styles.briefing}>{postInfo.data?.brief}</div>

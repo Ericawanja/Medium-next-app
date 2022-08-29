@@ -31,7 +31,8 @@ const styles = {
   
 };
 
-function ArticleMain() {
+function ArticleMain({post, author}) {
+  console.log(post, author)
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
