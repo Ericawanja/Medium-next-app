@@ -15,7 +15,9 @@ const styles = {
     "flex flex-col gap-3 p-3 sm:grid-cols-2 md:gap-6 md:p-6 lg:grid-cols-3",
 };
 export default function Home() {
-  const  {posts } = useContext(MediumContext )
+  const  {posts, users } = useContext(MediumContext )
+ //console.log(posts, 'k')
+ // console.log(users)
   return (
     <div className={styles.wrapper}>
       <Header />
@@ -23,9 +25,9 @@ export default function Home() {
       <div className={styles.main}>
         <div className={styles.container}>
           <div className={styles.postList}>
-            <PostCard />
-            <PostCard />
-            <PostCard />
+            {posts.map(post=>(
+              <PostCard postInfo= {post} key={post.id} />
+            ))}
           </div>
         </div>
       </div>

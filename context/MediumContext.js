@@ -1,24 +1,58 @@
-import { createContext, useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
 import { collection, getDocs, setDoc, doc } from "firebase/firestore";
 import { db } from "../firebase";
+import { async } from "@firebase/util";
 
 const MediumContext = createContext();
 
 const MediumProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState(['g']);
 
   useEffect(() => {
     const getUsers = async () => {
       const querySnapshot = await getDocs(collection(db, "users"));
-      querySnapshot.docs.map((doc) => console.log(doc));
+      setUsers(
+        querySnapshot.docs.map((doc) => {
+          return {
+            id: doc.id,
+            data: {
+              ...doc.data(),
+            },
+          };
+        })
+      );
     };
-    getUsers
+    getUsers();
+  }, []);
+  useEffect(() => {
+    const getPosts = async () => {
+      const querySnapshot = await getDocs(collection(db, "articles"));
+      setPosts(
+        querySnapshot.docs.map((doc) => {
+          return {
+            id: doc.id,
+            data: {
+              body:doc.data().body,
+              brief:doc.data().brief,
+              category:doc.data().category,
+              postLength:doc.data().postLength,
+              bannerImage:doc.data().bannerImage,
+              title:doc.data().title,
+              // comments:doc.data().comments,
+              postedOn:doc.data().postedOn,
+              author:doc.data().author,
+            },
+          };
+        })
+      );
+    };
+    getPosts();
   }, []);
 
   return (
     <MediumContext.Provider value={{ posts, users }}>
-        {children}
+      {children}
     </MediumContext.Provider>
   );
 };
