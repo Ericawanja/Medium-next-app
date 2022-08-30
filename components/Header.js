@@ -2,6 +2,28 @@ import Image from "next/image";
 import { useContext } from "react";
 import { MediumContext } from "../context/MediumContext";
 import Logo from "../static/logo.png";
+import Modal from "react-modal";
+import  Link  from "next/link";
+import { useRouter } from "next/router";
+import PostModal from "./PostModal";
+
+Modal.setAppElement("#__next");
+
+const customStyles = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    transform: "translate(-50%, -50%",
+    backgroundColor: "#fff",
+    padding: "0",
+    border: "none",
+  },
+  overlay: {
+    backgroundColor: "rgba(10, 11, 13, 0.75)",
+  },
+};
 
 const styles = {
   Wrapper: "flex justify-center gap-10 p-5 bg-[#FCC017]",
@@ -13,6 +35,8 @@ const styles = {
 };
 
 function Header() {
+  const router = useRouter();
+
   const { currentUser, handleUserAuth } = useContext(MediumContext);
   return (
     <div className={styles.Wrapper}>
@@ -24,7 +48,9 @@ function Header() {
           <div className={styles.bannerNav}>
             <div>Our Story</div>
             <div>Membership</div>
-            <div className={styles.startedBtn}>Write</div>
+            <Link href={"/?addNew=1"}>
+              <div className={styles.startedBtn}>Write</div>
+        </Link>
             <div className={styles.startedBtn}>Get Unlimited access</div>
           </div>
         ) : (
@@ -36,6 +62,15 @@ function Header() {
           </div>
         )}
       </div>
+      <Modal
+        isOpen={Boolean(router.query.addNew)}
+        onRequestClose={() => router.push('/')}
+        style={customStyles}
+      >
+        <div>
+          <PostModal/>
+        </div>
+      </Modal>
     </div>
   );
 }
