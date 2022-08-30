@@ -68,7 +68,7 @@ function PostCard({ postInfo }) {
                 month: "short",
                 year: "numeric",
               })}
-              . {postInfo.data?.postLength} read .{" "}
+              . {postInfo.data?.postLength} min read .{" "}
               <span className={styles.category}>{postInfo.data?.category}</span>
             </span>
             <span className={styles.bookmark}>

@@ -8,6 +8,7 @@ import { MediumContext } from "../../context/MediumContext";
 const styles = {
   wrapper: "flex",
   articleMain:'flex-[3]',
+  recommendationContainer:'hidden  md-block',
 };
 
 function Post() {
@@ -31,7 +32,7 @@ function Post() {
       <div className={styles.articleMain}>
         <ArticleMain post={post} author={author}/>
       </div>
-      <div>
+      <div className={styles.recommendationContainer}>
         <Recommendations />
       </div>
     </div>

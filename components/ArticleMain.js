@@ -54,7 +54,8 @@ function ArticleMain({ post, author }) {
                     month: "short",
                     year: "numeric",
                   })}
-                  .{post?.data?.postLength}{" "}
+                  .{post?.data?.postLength} min 
+                  {" "}
                 </span>
                 <span className={styles.listenButton}>
                   <AiFillPlayCircle />
@@ -96,9 +97,7 @@ function ArticleMain({ post, author }) {
             </div>
             <div>{post?.data?.brief}</div>
           </span>
-          <div className={styles.articleText}>
-          {post?.data?.body}
-          </div>
+          <div className={styles.articleText}>{post?.data?.body}</div>
         </div>
       </div>
     </div>

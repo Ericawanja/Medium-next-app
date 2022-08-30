@@ -1,12 +1,14 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import Logo from "./../static/banner.png";
 const styles = {
-    wrapper:'h-max-[10rem] flex items-center justify-center bg-[#FCC017] border-y border-black',
-  startedBtn: "text-white bg-black py-2 px-4 rounded-full",
+    wrapper:'h-max-[10rem] flex items-center justify-center bg-[#FCC017] border-y border-black mb-1',
+  startedBtn: "text-white bg-black py-2 px-4  rounded-full ",
   content: " max-w-7xl flex-1 flex items-center justify-betwen",
 };
 
 function Banner() {
+  const router = useRouter()
   return (
     <div className={styles.wrapper}>
       {" "}
@@ -18,7 +20,7 @@ function Banner() {
           <h3 className="text-2xl">
             Discover stories, thinking, and expertise from writers on any topic
           </h3>
-          <button className={styles.startedBtn}>Start Reading</button>
+          {/*<button className={styles.startedBtn}>Start Reading</button>*/}
         </div>
         <Image
           className="hidden h-32 md:inline-flex object-contain flex-1"

@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { MediumContext } from "../context/MediumContext";
-import {collection, addDoc, severTimestamp} from 'firebase/firestore'
+import {collection, addDoc, serverTimestamp} from 'firebase/firestore'
 import {db } from '../firebase'
 
 const styles = {
@@ -33,7 +33,7 @@ const addPostToFirebase = async (event)=>{
     body:body,
     category:category,
     brief:brief,
-    postedOn:severTimestamp(),
+    postedOn:serverTimestamp(),
     postLength:Number(postLength),
     title:title,
     author:currentUser.email

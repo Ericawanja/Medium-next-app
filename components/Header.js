@@ -31,7 +31,7 @@ const styles = {
   logoContainer: "flex items-center flex-start",
   logo: "cursor-pointer object-contain",
   bannerNav: "flex cursor-pointer  items-center space-x-5",
-  startedBtn: "text-white bg-black py-2 px-4 rounded-full",
+  startedBtn: "text-white bg-black py-2 px-4 rounded-full ",
 };
 
 function Header() {
